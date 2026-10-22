@@ -1,79 +1,38 @@
-/* Eyeon app - large targets, high contrast, Arabic RTL, light and dark. */
+/* بصيرة (Bassera) - the companion app of the Eyeon headband.
+   Brand: black #0d0d0d with gold #d8c088, taken from the Eyeon and Bassera artwork.
+   Large targets, high contrast, Arabic RTL. */
 :root {
-  color-scheme: light;
-  --bg: #f3f5f8;
-  --surface: #ffffff;
-  --surface-2: #e6ebf1;
-  --text: #0d1b2a;
-  --muted: #45566a;
-  --border: #c3cdd8;
-  --accent: #0050aa;
-  --accent-text: #ffffff;
-  --danger: #b3121f;
-  --danger-text: #ffffff;
-  --ok: #17733a;
-  --focus: #e09b00;
-  --level-0: #8696a8;
-  --level-1: #1f8a4c;
-  --level-2: #b98a00;
-  --level-3: #d4620a;
-  --level-4: #c4161c;
-  --level-1-fill: rgba(31, 138, 76, 0.18);
-  --level-2-fill: rgba(185, 138, 0, 0.2);
-  --level-3-fill: rgba(212, 98, 10, 0.22);
-  --level-4-fill: rgba(196, 22, 28, 0.28);
-  --level-0-fill: rgba(134, 150, 168, 0.18);
-  --radar-ring: #c3cdd8;
-  --radar-highlight: rgba(0, 80, 170, 0.18);
-  --fault: #8696a8;
-  --radius: 14px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --bg: #0b0f14;
-    --surface: #141b24;
-    --surface-2: #1d2733;
-    --text: #f2f5f8;
-    --muted: #a9b6c4;
-    --border: #2f3c4b;
-    --accent: #5aa9ff;
-    --accent-text: #04121f;
-    --danger: #ff5a5f;
-    --danger-text: #1a0405;
-    --ok: #4cd884;
-    --focus: #ffcc33;
-    --level-0: #6c7d90;
-    --level-1: #43d17f;
-    --level-2: #f2c230;
-    --level-3: #ff9233;
-    --level-4: #ff4d4f;
-    --level-1-fill: rgba(67, 209, 127, 0.18);
-    --level-2-fill: rgba(242, 194, 48, 0.2);
-    --level-3-fill: rgba(255, 146, 51, 0.22);
-    --level-4-fill: rgba(255, 77, 79, 0.3);
-    --level-0-fill: rgba(108, 125, 144, 0.2);
-    --radar-ring: #2f3c4b;
-    --radar-highlight: rgba(90, 169, 255, 0.2);
-    --fault: #6c7d90;
-  }
-}
-
-:root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #0b0f14;
-  --surface: #141b24;
-  --surface-2: #1d2733;
-  --text: #f2f5f8;
-  --muted: #a9b6c4;
-  --border: #2f3c4b;
-  --accent: #5aa9ff;
-  --accent-text: #04121f;
-  --danger: #ff5a5f;
-  --danger-text: #1a0405;
-  --ok: #4cd884;
-  --focus: #ffcc33;
+  --bg: #0d0d0d;
+  --surface: #151411;
+  --surface-2: #1d1b16;
+  --border: #322d24;
+  --text: #f6f1e7;
+  --muted: #b7ab95;
+  --gold: #d8c088;
+  --gold-light: #e8d0a0;
+  --gold-deep: #b8975c;
+  --gold-dim: #8a7650;
+  --accent-text: #0d0d0d;
+  --danger: #c8323c;
+  --danger-text: #ffffff;
+  --ok: #7fcf8f;
+  --focus: #f2d58e;
+  /* Radar levels: dim gold -> gold -> amber -> red. */
+  --level-0: #4a4334;
+  --level-1: #8f7b52;
+  --level-2: #d8c088;
+  --level-3: #f0a541;
+  --level-4: #ef4b4b;
+  --level-0-fill: rgba(74, 67, 52, 0.25);
+  --level-1-fill: rgba(143, 123, 82, 0.22);
+  --level-2-fill: rgba(216, 192, 136, 0.22);
+  --level-3-fill: rgba(240, 165, 65, 0.26);
+  --level-4-fill: rgba(239, 75, 75, 0.32);
+  --radar-ring: #2a261f;
+  --radar-highlight: rgba(216, 192, 136, 0.2);
+  --fault: #6f6450;
+  --radius: 16px;
 }
 
 * { box-sizing: border-box; }
@@ -83,16 +42,18 @@ html, body { margin: 0; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, "Segoe UI", "Noto Sans Arabic", Tahoma, sans-serif;
+  font-family: "Tajawal", system-ui, "Segoe UI", "Noto Sans Arabic", Tahoma, sans-serif;
   font-size: 18px;
+  font-weight: 400;
   line-height: 1.6;
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-h1, h2, h3 { line-height: 1.3; margin: 0 0 0.5rem; }
-h2 { font-size: 1.5rem; }
-h3 { font-size: 1.15rem; margin-top: 1.25rem; }
+h1, h2, h3 { line-height: 1.3; margin: 0 0 0.5rem; font-weight: 700; }
+h2 { font-size: 1.55rem; color: var(--gold); }
+h3 { font-size: 1.15rem; margin-top: 1.25rem; color: var(--gold-light); }
 p { margin: 0 0 0.75rem; }
+.muted { color: var(--muted); }
 
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -101,30 +62,34 @@ p { margin: 0 0 0.75rem; }
 
 .skip-link {
   position: absolute; inset-inline-start: 1rem; top: -4rem;
-  background: var(--accent); color: var(--accent-text); padding: 0.5rem 1rem; border-radius: var(--radius); z-index: 10;
+  background: var(--gold); color: var(--accent-text); padding: 0.5rem 1rem; border-radius: var(--radius); z-index: 10;
 }
 .skip-link:focus { top: 0.5rem; }
 
-:focus-visible { outline: 4px solid var(--focus); outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 
+/* Header and tabs share the artwork's black, so the wordmark sits on it seamlessly. */
 .topbar {
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
-  padding: 0.75rem 16px; background: var(--surface); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0.6rem 16px; background: var(--bg);
 }
-.brand { display: flex; align-items: center; gap: 0.6rem; }
-.brand h1 { font-size: 1.5rem; margin: 0; letter-spacing: 0.02em; }
-.top-status { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.brand { margin: 0; line-height: 0; }
+.brand img { height: 45px; width: auto; }
+.top-status {
+  margin: 0; color: var(--gold); font-size: 0.9rem; font-weight: 500;
+  border: 1px solid var(--border); border-radius: 999px; padding: 0.15rem 0.8rem;
+}
 
 .tabs {
-  display: flex; gap: 4px; overflow-x: auto; padding: 8px 16px 0;
-  background: var(--surface); border-bottom: 1px solid var(--border);
+  display: flex; gap: 2px; overflow-x: auto; padding: 0 16px;
+  background: var(--bg); border-bottom: 1px solid var(--border);
   position: sticky; top: 0; z-index: 5;
 }
 .tabs button {
-  flex: 1 0 auto; min-height: 52px; padding: 0 1rem; font: inherit; font-size: 1rem;
-  background: none; color: var(--muted); border: 0; border-bottom: 4px solid transparent; cursor: pointer;
+  flex: 1 0 auto; min-height: 52px; padding: 0 1rem; font: inherit; font-size: 1rem; font-weight: 500;
+  background: none; color: var(--muted); border: 0; border-bottom: 3px solid transparent; cursor: pointer;
 }
-.tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); font-weight: 700; }
+.tabs button[aria-selected="true"] { color: var(--gold); border-bottom-color: var(--gold); font-weight: 700; }
 
 main { padding: 16px; max-width: 760px; margin: 0 auto; }
 
@@ -134,10 +99,16 @@ main { padding: 16px; max-width: 760px; margin: 0 auto; }
 }
 .card h3:first-child { margin-top: 0; }
 
-.status-line { font-weight: 600; margin-bottom: 0.25rem; }
+.device-head { display: flex; align-items: center; gap: 0.9rem; }
+.device-head h3 { margin: 0 0 0.15rem; }
+/* The Eyeon artwork is on brand black; "lighten" lets the card show through it. */
+.eyeon-mark, .eyeon-logo { mix-blend-mode: lighten; flex: 0 0 auto; }
+.eyeon-mark { width: 64px; height: auto; }
+
+.status-line { font-weight: 500; margin-bottom: 0.15rem; }
 .warning {
-  background: var(--surface-2); border-inline-start: 6px solid var(--level-2);
-  padding: 0.75rem; border-radius: 8px; margin-top: 0.75rem;
+  background: var(--surface-2); border-inline-start: 4px solid var(--gold);
+  padding: 0.75rem; border-radius: 10px; margin-top: 0.75rem;
 }
 .hint { color: var(--muted); font-size: 0.95rem; }
 
@@ -145,28 +116,37 @@ main { padding: 16px; max-width: 760px; margin: 0 auto; }
 .stack { display: grid; gap: 0.6rem; margin-bottom: 1rem; }
 
 .btn {
-  min-height: 56px; padding: 0.5rem 1.1rem; font: inherit; font-weight: 600;
-  background: var(--surface-2); color: var(--text); border: 2px solid var(--border);
+  min-height: 56px; padding: 0.5rem 1.1rem; font: inherit; font-weight: 500;
+  background: var(--surface-2); color: var(--text); border: 1.5px solid var(--border);
   border-radius: var(--radius); cursor: pointer; flex: 1 1 auto;
 }
+.btn:hover { border-color: var(--gold-dim); }
 .btn:active { transform: translateY(1px); }
-.btn:disabled { opacity: 0.45; cursor: not-allowed; }
-.btn.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
-.btn.danger { background: var(--danger); color: var(--danger-text); border-color: var(--danger); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn.primary {
+  background: linear-gradient(180deg, var(--gold-light), var(--gold) 55%, var(--gold-deep));
+  color: var(--accent-text); border-color: var(--gold); font-weight: 700;
+}
+.btn.danger { background: var(--danger); color: var(--danger-text); border-color: var(--danger); font-weight: 700; }
 .btn.small { min-height: 44px; font-size: 0.95rem; flex: 0 0 auto; }
-.btn[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 3px var(--accent); }
+.btn[aria-pressed="true"] { border-color: var(--gold); box-shadow: inset 0 0 0 2px var(--gold); color: var(--gold-light); }
 
 .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem; }
-.btn.big { min-height: 96px; font-size: 1.25rem; }
-.btn.wide { grid-column: 1 / -1; }
-.actions.busy .btn.big:not(.danger) { opacity: 0.6; }
+.btn.big {
+  min-height: 112px; font-size: 1.2rem; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 0.4rem; text-align: center;
+}
+.btn.wide { grid-column: 1 / -1; min-height: 96px; flex-direction: row; gap: 0.6rem; }
+.icon { width: 34px; height: 34px; fill: none; stroke: var(--gold); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.btn.danger .icon { stroke: var(--danger-text); }
+.actions.busy .btn.big:not(.danger) { opacity: 0.55; }
 
-.last-message { font-size: 1.2rem; font-weight: 600; min-height: 2.5em; }
-.preview { width: 100%; max-height: 260px; object-fit: contain; border-radius: 10px; background: var(--surface-2); }
+.last-message { font-size: 1.2rem; font-weight: 500; min-height: 2.5em; }
+.preview { width: 100%; max-height: 260px; object-fit: contain; border-radius: 12px; background: var(--bg); }
 
 .radar-wrap { display: grid; gap: 0.75rem; justify-items: center; }
 .radar { width: min(100%, 420px); aspect-ratio: 1; }
-.legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; list-style: none; padding: 0; margin: 0; font-size: 0.95rem; }
+.legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; list-style: none; padding: 0; margin: 0; font-size: 0.95rem; color: var(--muted); }
 .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 4px; margin-inline-end: 0.35rem; vertical-align: -2px; }
 .swatch.l1 { background: var(--level-1); }
 .swatch.l2 { background: var(--level-2); }
@@ -175,26 +155,29 @@ main { padding: 16px; max-width: 760px; margin: 0 auto; }
 
 .zone-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.35rem; }
 .zone-list li { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.5rem 0.75rem; }
-.zone-list li[data-level="3"], .zone-list li[data-level="4"] { border-color: var(--level-4); font-weight: 700; }
+.zone-list li[data-level="3"] { border-color: var(--level-3); font-weight: 700; }
+.zone-list li[data-level="4"] { border-color: var(--level-4); font-weight: 700; }
 
 fieldset { border: 1px solid var(--border); border-radius: var(--radius); padding: 0.75rem 1rem 1rem; margin: 0 0 1rem; }
-legend { font-weight: 700; padding: 0 0.4rem; }
+legend { font-weight: 700; padding: 0 0.4rem; color: var(--gold); }
 
-.field { display: grid; gap: 0.35rem; margin: 0.6rem 0; font-weight: 600; }
+.field { display: grid; gap: 0.35rem; margin: 0.6rem 0; font-weight: 500; }
 .field input, .field select, .field textarea {
   font: inherit; font-weight: 400; min-height: 48px; padding: 0.4rem 0.6rem;
-  background: var(--bg); color: var(--text); border: 2px solid var(--border); border-radius: 10px;
+  background: var(--bg); color: var(--text); border: 1.5px solid var(--border); border-radius: 10px;
 }
-.field input[type="range"] { min-height: 40px; padding: 0; accent-color: var(--accent); }
-.field output { color: var(--accent); font-weight: 700; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); }
+.field input[type="range"] { min-height: 40px; padding: 0; border: 0; background: none; accent-color: var(--gold); }
+.field output { color: var(--gold); font-weight: 700; }
 .check { display: flex; align-items: center; gap: 0.6rem; min-height: 48px; }
-.check input { width: 24px; height: 24px; accent-color: var(--accent); }
+.check input { width: 24px; height: 24px; accent-color: var(--gold); }
 .segmented { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .segmented label {
   display: flex; align-items: center; gap: 0.4rem; min-height: 48px; padding: 0 0.9rem;
-  border: 2px solid var(--border); border-radius: 999px; background: var(--surface-2);
+  border: 1.5px solid var(--border); border-radius: 999px; background: var(--surface-2);
 }
-.segmented input { width: 20px; height: 20px; accent-color: var(--accent); }
+.segmented label:has(input:checked) { border-color: var(--gold); color: var(--gold-light); }
+.segmented input { width: 20px; height: 20px; accent-color: var(--gold); }
 .zone-row { border-top: 1px solid var(--border); padding-top: 0.5rem; margin-top: 0.5rem; }
 .settings-form { margin-bottom: 1rem; }
 
@@ -203,8 +186,6 @@ legend { font-weight: 700; padding: 0 0.4rem; }
 .compass .btn { min-height: 72px; direction: rtl; }
 .compass .center { visibility: hidden; }
 .quiz .row .btn { min-width: 30%; }
-.btn.correct { border-color: var(--ok); box-shadow: inset 0 0 0 3px var(--ok); }
-.btn.wrong { border-color: var(--danger); box-shadow: inset 0 0 0 3px var(--danger); }
 
 .contact-list { list-style: none; padding: 0; display: grid; gap: 0.5rem; }
 .contact-list li {
@@ -212,16 +193,25 @@ legend { font-weight: 700; padding: 0 0.4rem; }
   background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.5rem 0.75rem;
 }
 
+.about { display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem; }
+.about .eyeon-logo { width: 96px; height: auto; }
+.about p:last-child { margin-bottom: 0; }
+
 .sos-panel {
   position: fixed; inset: 0; z-index: 20; overflow-y: auto;
   background: var(--danger); color: var(--danger-text); padding: 24px 16px;
   display: grid; align-content: start; gap: 1rem;
 }
 .sos-panel[hidden] { display: none; }
-.sos-panel h2 { font-size: 2rem; }
-.sos-countdown { font-size: 2.4rem; font-weight: 800; margin: 0; }
-.sos-panel .btn { background: var(--danger-text); color: var(--danger); border-color: var(--danger-text); min-height: 80px; font-size: 1.3rem; }
-.sos-panel .btn.primary { background: var(--surface); color: var(--text); }
+.sos-panel h2 { font-size: 2rem; color: var(--danger-text); }
+.sos-countdown { font-size: 2.4rem; font-weight: 700; margin: 0; }
+.sos-panel .btn { background: var(--danger-text); color: var(--danger); border-color: var(--danger-text); min-height: 80px; font-size: 1.3rem; font-weight: 700; }
+.sos-panel .btn.primary { background: var(--bg); color: var(--gold); border-color: var(--bg); }
+
+@media (max-width: 380px) {
+  .brand img { height: 38px; }
+  .btn.big { font-size: 1.08rem; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }

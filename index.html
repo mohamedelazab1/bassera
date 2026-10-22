@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0b0f14">
-  <meta name="description" content="تطبيق بندانة Eyeon لمساعدة المكفوفين وضعاف البصر">
-  <title>Eyeon</title>
+  <meta name="theme-color" content="#0d0d0d">
+  <meta name="description" content="بصيرة (Bassera): تطبيق بندانة Eyeon لمساعدة المكفوفين وضعاف البصر">
+  <title>بصيرة</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" href="icons/favicon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="fonts/tajawal.css">
   <link rel="stylesheet" href="css/app.css">
   <script type="module" src="js/main.js"></script>
 </head>
@@ -16,10 +17,7 @@
   <a class="skip-link" href="#main">اذهب للمحتوى</a>
 
   <header class="topbar">
-    <div class="brand">
-      <img src="icons/icon.svg" alt="" width="36" height="36">
-      <h1>Eyeon</h1>
-    </div>
+    <h1 class="brand"><img src="img/bassera-wordmark.png" alt="بصيرة" width="112" height="45"></h1>
     <p id="top-status" class="top-status">البندانة مش متوصلة</p>
   </header>
 
@@ -36,9 +34,15 @@
     <section id="tab-home" role="tabpanel" aria-labelledby="tab-btn-home">
       <h2 class="sr-only" tabindex="-1">الرئيسية</h2>
 
-      <div class="card" id="connect-card">
-        <p id="band-status" class="status-line">البندانة: مش متوصلة</p>
-        <p id="camera-status" class="status-line">الكاميرا: مش متوصلة (هستخدم كاميرا الموبايل)</p>
+      <div class="card device-card" id="connect-card">
+        <div class="device-head">
+          <img class="eyeon-mark" src="img/eyeon-mark.png" alt="" width="64" height="55">
+          <div>
+            <h3>بندانة Eyeon</h3>
+            <p id="band-status" class="status-line">البندانة: مش متوصلة</p>
+            <p id="camera-status" class="status-line muted">الكاميرا: مش متوصلة (هستخدم كاميرا الموبايل)</p>
+          </div>
+        </div>
         <p id="ble-warning" class="warning" hidden>
           المتصفح ده مش بيدعم البلوتوث. افتح التطبيق من Chrome على أندرويد، أو من تطبيق Bluefy على آيفون.
           تقدر تجرب كل حاجة دلوقتي بزرار "تجربة من غير جهاز".
@@ -51,18 +55,39 @@
       </div>
 
       <div class="actions">
-        <button id="btn-describe" class="btn big">إيه اللي قدامي؟</button>
-        <button id="btn-read" class="btn big">اقرا الكلام</button>
-        <button id="btn-voice" class="btn big">أمر بالصوت</button>
-        <button id="btn-battery" class="btn big">البطارية</button>
-        <button id="btn-quiet" class="btn big" aria-pressed="false">وضع الهدوء</button>
-        <button id="btn-pause" class="btn big" aria-pressed="false">وقّف الاهتزاز ٥ دقايق</button>
-        <button id="btn-sos" class="btn big danger wide">استغاثة</button>
+        <button id="btn-describe" class="btn big">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3.2"/></svg>
+          إيه اللي قدامي؟
+        </button>
+        <button id="btn-read" class="btn big">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l3 3v15H6z"/><path d="M9 10h6M9 14h6M9 18h4"/></svg>
+          اقرا الكلام
+        </button>
+        <button id="btn-voice" class="btn big">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M8.5 21h7"/></svg>
+          أمر بالصوت
+        </button>
+        <button id="btn-battery" class="btn big">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M22 10.5v3M5.5 10v4M8.5 10v4M11.5 10v4"/></svg>
+          البطارية
+        </button>
+        <button id="btn-quiet" class="btn big" aria-pressed="false">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+          وضع الهدوء
+        </button>
+        <button id="btn-pause" class="btn big" aria-pressed="false">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="5" width="3.5" height="14" rx="1"/><rect x="14" y="5" width="3.5" height="14" rx="1"/></svg>
+          وقّف الاهتزاز ٥ دقايق
+        </button>
+        <button id="btn-sos" class="btn big danger wide">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19z"/><path d="M12 10v4.5M12 17.5v.5"/></svg>
+          استغاثة
+        </button>
       </div>
 
       <div class="card">
         <h3>آخر رسالة</h3>
-        <p id="last-message" class="last-message">أهلاً بيك في Eyeon.</p>
+        <p id="last-message" class="last-message">أهلاً بيك في بصيرة.</p>
         <img id="preview" class="preview" alt="آخر صورة اتصورت" hidden>
       </div>
     </section>
@@ -170,7 +195,15 @@
         </p>
         <button id="btn-key-save" class="btn">احفظ المفتاح</button>
       </div>
-      <p id="about" class="hint"></p>
+
+      <div class="card about">
+        <img class="eyeon-logo" src="img/eyeon-logo.png" alt="Eyeon" width="160" height="189">
+        <div>
+          <h3>بصيرة</h3>
+          <p>التطبيق المصاحب لبندانة Eyeon: البندانة بتحس بالعوائق حوالين راسك وبتوصّلها بالاهتزاز، وبصيرة بتوصف المكان وبتقرا وبتساعد في الطوارئ.</p>
+          <p id="about" class="hint"></p>
+        </div>
+      </div>
     </section>
   </main>
 

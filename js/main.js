@@ -152,7 +152,7 @@ function renderConnection() {
   $('#settings-note').hidden = !!d?.connected;
   if (app.status) {
     const st = app.status;
-    $('#about').textContent = `البندانة: إصدار ${st.firmware}، نسخة ${st.variant === 'plus' ? 'Plus' : 'Lite'}، ` +
+    $('#about').textContent = `البندانة المتوصلة: Eyeon ${st.variant === 'plus' ? 'Plus' : 'Lite'}، إصدار ${st.firmware}، ` +
       `حساسات ليزر شغالة ${st.tofCount}، حساس الحركة ${st.imuOk ? 'شغال' : 'مش موجود'}.`;
   }
 }

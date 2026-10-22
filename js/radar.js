@@ -86,7 +86,7 @@ export function drawRadar(canvas, telemetry, { highlightMask = 0 } = {}) {
   ctx.moveTo(c - 8, c - rHead + 10);
   ctx.lineTo(c, c - rHead - 2);
   ctx.lineTo(c + 8, c - rHead + 10);
-  ctx.fillStyle = color('--text');
+  ctx.fillStyle = color('--gold');
   ctx.fill();
 }
 
