@@ -4,7 +4,7 @@
 
 التطبيق المصاحب لبندانة **Eyeon** لمساعدة المكفوفين وضعاف البصر: البندانة بتحس بالعوائق في 8 اتجاهات حوالين الراس وبتوصّل الاتجاه والمسافة بالاهتزاز، وبصيرة بتكمّلها.
 
-**افتح التطبيق:** https://mohamedelazab1.github.io/eyeon-app/
+**افتح التطبيق:** https://mohamedelazab1.github.io/bassera/
 
 <p align="center"><img src="img/eyeon-logo.png" alt="Eyeon" width="120"></p>
 

@@ -1,7 +1,7 @@
 // Offline support: the app shell is served network-first (updates arrive as soon
 // as there is a connection); the pinned CDN libraries and the object-detection
 // model are cache-first (their URLs carry exact versions, so they never change).
-const CACHE = 'bassera-v1';
+const CACHE = 'bassera-v2';
 const IMMUTABLE = (url) =>
   url.hostname === 'cdn.jsdelivr.net' ||
   (url.hostname === 'storage.googleapis.com' && url.pathname.startsWith('/tfjs-models/'));
@@ -36,8 +36,11 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(request)
         .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE).then((c) => c.put(request, copy));
+          // Never let an error page (404, 500...) replace a good cached copy.
+          if (response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE).then((c) => c.put(request, copy));
+          }
           return response;
         })
         .catch(() => caches.match(request).then((hit) => hit || caches.match('index.html'))),
