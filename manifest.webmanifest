@@ -1,0 +1,19 @@
+{
+  "name": "Eyeon - بندانة الإحساس بالمكان",
+  "short_name": "Eyeon",
+  "description": "تطبيق بندانة Eyeon لمساعدة المكفوفين وضعاف البصر: إعدادات، تدريب على لغة الاهتزاز، وصف المكان، قراءة الكلام، واستغاثة.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0f14",
+  "theme_color": "#0b0f14",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

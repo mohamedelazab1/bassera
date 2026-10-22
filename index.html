@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0f14">
+  <meta name="description" content="تطبيق بندانة Eyeon لمساعدة المكفوفين وضعاف البصر">
+  <title>Eyeon</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/app.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">اذهب للمحتوى</a>
+
+  <header class="topbar">
+    <div class="brand">
+      <img src="icons/icon.svg" alt="" width="36" height="36">
+      <h1>Eyeon</h1>
+    </div>
+    <p id="top-status" class="top-status">البندانة مش متوصلة</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="أقسام التطبيق">
+    <button role="tab" id="tab-btn-home" aria-controls="tab-home" aria-selected="true">الرئيسية</button>
+    <button role="tab" id="tab-btn-radar" aria-controls="tab-radar" aria-selected="false" tabindex="-1">الرادار</button>
+    <button role="tab" id="tab-btn-training" aria-controls="tab-training" aria-selected="false" tabindex="-1">التدريب</button>
+    <button role="tab" id="tab-btn-sos" aria-controls="tab-sos" aria-selected="false" tabindex="-1">الطوارئ</button>
+    <button role="tab" id="tab-btn-settings" aria-controls="tab-settings" aria-selected="false" tabindex="-1">الإعدادات</button>
+  </nav>
+
+  <main id="main">
+    <!-- Home -->
+    <section id="tab-home" role="tabpanel" aria-labelledby="tab-btn-home">
+      <h2 class="sr-only" tabindex="-1">الرئيسية</h2>
+
+      <div class="card" id="connect-card">
+        <p id="band-status" class="status-line">البندانة: مش متوصلة</p>
+        <p id="camera-status" class="status-line">الكاميرا: مش متوصلة (هستخدم كاميرا الموبايل)</p>
+        <p id="ble-warning" class="warning" hidden>
+          المتصفح ده مش بيدعم البلوتوث. افتح التطبيق من Chrome على أندرويد، أو من تطبيق Bluefy على آيفون.
+          تقدر تجرب كل حاجة دلوقتي بزرار "تجربة من غير جهاز".
+        </p>
+        <div class="row">
+          <button id="btn-connect" class="btn primary">وصّل البندانة</button>
+          <button id="btn-camera" class="btn">وصّل الكاميرا</button>
+          <button id="btn-demo" class="btn">تجربة من غير جهاز</button>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="btn-describe" class="btn big">إيه اللي قدامي؟</button>
+        <button id="btn-read" class="btn big">اقرا الكلام</button>
+        <button id="btn-voice" class="btn big">أمر بالصوت</button>
+        <button id="btn-battery" class="btn big">البطارية</button>
+        <button id="btn-quiet" class="btn big" aria-pressed="false">وضع الهدوء</button>
+        <button id="btn-pause" class="btn big" aria-pressed="false">وقّف الاهتزاز ٥ دقايق</button>
+        <button id="btn-sos" class="btn big danger wide">استغاثة</button>
+      </div>
+
+      <div class="card">
+        <h3>آخر رسالة</h3>
+        <p id="last-message" class="last-message">أهلاً بيك في Eyeon.</p>
+        <img id="preview" class="preview" alt="آخر صورة اتصورت" hidden>
+      </div>
+    </section>
+
+    <!-- Radar -->
+    <section id="tab-radar" role="tabpanel" aria-labelledby="tab-btn-radar" hidden>
+      <h2 tabindex="-1">الرادار</h2>
+      <p class="hint">للمرافق: الدايرة هي الراس والسهم ناحية القدام. كل لون مستوى خطورة، وكل حلقة متر.</p>
+      <div class="radar-wrap">
+        <canvas id="radar" class="radar" role="img" aria-label="رسم الاتجاهات التمانية والمسافات"></canvas>
+        <ul class="legend" aria-hidden="true">
+          <li><span class="swatch l1"></span>بعيد</li>
+          <li><span class="swatch l2"></span>متوسط</li>
+          <li><span class="swatch l3"></span>قريب</li>
+          <li><span class="swatch l4"></span>قريب جداً</li>
+        </ul>
+      </div>
+      <h3>المسافات</h3>
+      <ul id="zone-list" class="zone-list"></ul>
+      <p id="radar-meta" class="hint"></p>
+    </section>
+
+    <!-- Training -->
+    <section id="tab-training" role="tabpanel" aria-labelledby="tab-btn-training" hidden>
+      <h2 tabindex="-1">تدريب على لغة الاهتزاز</h2>
+      <p class="hint">مكان الاهتزاز هو اتجاه العائق، وسرعة النبض هي المسافة. ابدأ بالدروس بالترتيب وبعدين الاختبار.</p>
+      <div id="lesson-list" class="stack"></div>
+      <button id="btn-lesson-stop" class="btn">وقّف الدرس</button>
+
+      <div class="card quiz">
+        <h3>اختبار</h3>
+        <p id="quiz-prompt">دوس "سؤال جديد"، حس بالاهتزاز، وبعدين اختار الاتجاه والمسافة.</p>
+        <div class="row">
+          <button id="btn-quiz-new" class="btn primary">سؤال جديد</button>
+          <button id="btn-quiz-replay" class="btn">عيد الاهتزاز</button>
+        </div>
+        <fieldset class="compass-set">
+          <legend>الاتجاه</legend>
+          <div id="quiz-zones" class="compass"></div>
+        </fieldset>
+        <fieldset>
+          <legend>المسافة</legend>
+          <div id="quiz-levels" class="row"></div>
+        </fieldset>
+        <p id="quiz-score" class="hint"></p>
+        <button id="btn-quiz-reset" class="btn small">صفّر النتيجة</button>
+      </div>
+    </section>
+
+    <!-- Emergency -->
+    <section id="tab-sos" role="tabpanel" aria-labelledby="tab-btn-sos" hidden>
+      <h2 tabindex="-1">الطوارئ</h2>
+      <p class="hint">
+        الاستغاثة بتشتغل من الزرار هنا، أو بالضغط ٥ ثواني على زرار البندانة، أو تلقائي لو البندانة حسّت إنك وقعت.
+        بيبدأ عد تنازلي تقدر تلغيه، وبعدها الرسالة بتتجهز بمكانك على واتساب أو SMS لأول رقم في القايمة.
+      </p>
+      <ul id="contact-list" class="contact-list"></ul>
+      <form id="contact-form" class="card">
+        <h3>إضافة رقم</h3>
+        <label class="field">الاسم <input name="name" required autocomplete="name"></label>
+        <label class="field">الموبايل <input name="phone" required inputmode="tel" autocomplete="tel" placeholder="01xxxxxxxxx"></label>
+        <button class="btn primary">ضيف</button>
+      </form>
+      <label class="field">نص الرسالة
+        <textarea id="sos-message" rows="2"></textarea></label>
+      <button id="btn-sos-test" class="btn">جرّب الاستغاثة (عد تنازلي تقدر تلغيه)</button>
+    </section>
+
+    <!-- Settings -->
+    <section id="tab-settings" role="tabpanel" aria-labelledby="tab-btn-settings" hidden>
+      <h2 tabindex="-1">الإعدادات</h2>
+      <h3>إعدادات البندانة</h3>
+      <p id="settings-note" class="hint">وصّل البندانة الأول (أو شغّل التجربة) عشان تعدّل إعداداتها.</p>
+      <form id="settings-form" class="settings-form"></form>
+      <div class="row">
+        <button id="btn-settings-save" class="btn primary" disabled>احفظ على البندانة</button>
+        <button id="btn-settings-reload" class="btn" disabled>رجّع القيم المتسجلة</button>
+      </div>
+
+      <h3>أدوات</h3>
+      <div class="stack">
+        <button id="btn-motor-test" class="btn">جرّب الموتورات (لفّة حوالين الراس)</button>
+        <button id="btn-find" class="btn">دوّر على البندانة (اهتزاز قوي)</button>
+        <button id="btn-cal-1" class="btn">معايرة ١: اقف مفرود وبص قدامك ودوس</button>
+        <button id="btn-cal-2" class="btn">معايرة ٢: وطّي راسك لتحت شوية ودوس</button>
+        <button id="btn-factory" class="btn danger">رجّع إعدادات المصنع</button>
+      </div>
+
+      <h3>إعدادات التطبيق</h3>
+      <div class="settings-form">
+        <label class="field">طريقة الكلام
+          <select id="speech-mode">
+            <option value="voice">صوت التطبيق</option>
+            <option value="screenreader">قارئ الشاشة (TalkBack)</option>
+          </select></label>
+        <label class="field">سرعة الكلام <output id="rate-out"></output>
+          <input id="speech-rate" type="range" min="0.6" max="1.6" step="0.1"></label>
+        <label class="check"><input id="keep-awake" type="checkbox"> خلّي الشاشة منوّرة (عشان تنبيهات البندانة توصل دايماً)</label>
+        <label class="check"><input id="demo-vibration" type="checkbox"> في التجربة: اهتز الموبايل بإيقاع أقرب عائق</label>
+        <label class="field">مفتاح Claude (اختياري) لوصف أدق وقراءة عربي أحسن
+          <input id="claude-key" type="password" autocomplete="off" placeholder="sk-ant-..." dir="ltr"></label>
+        <p class="hint">
+          من غير مفتاح، التعرف على الأجسام وقراءة الكلام بيشتغلوا على الموبايل نفسه. بالمفتاح الصورة بتتبعت لـ Claude
+          (محتاج إنترنت). المفتاح بيتحفظ على الموبايل ده بس؛ استخدم مفتاح عليه حد للصرف.
+        </p>
+        <button id="btn-key-save" class="btn">احفظ المفتاح</button>
+      </div>
+      <p id="about" class="hint"></p>
+    </section>
+  </main>
+
+  <div id="sos-panel" class="sos-panel" role="alertdialog" aria-modal="true" aria-labelledby="sos-title" hidden>
+    <h2 id="sos-title">استغاثة</h2>
+    <p id="sos-countdown" class="sos-countdown"></p>
+    <p id="sos-location"></p>
+    <div id="sos-actions" class="stack"></div>
+  </div>
+
+  <div id="live" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
+</body>
+</html>
